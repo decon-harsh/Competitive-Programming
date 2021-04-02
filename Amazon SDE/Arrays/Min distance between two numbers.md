@@ -1,4 +1,4 @@
-# (Question Link)[https://practice.geeksforgeeks.org/problems/minimum-distance-between-two-numbers/1/?track=amazon-arrays&batchId=192#]
+# [Question Link](https://practice.geeksforgeeks.org/problems/minimum-distance-between-two-numbers/1/?track=amazon-arrays&batchId=192#)
 
 # You are given an array A, of N elements. Find minimum index based distance between two elements of the array, x and y.
 

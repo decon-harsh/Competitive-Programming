@@ -1,4 +1,4 @@
-# (Question Link)[https://practice.geeksforgeeks.org/problems/third-largest-element/1/?track=amazon-arrays&batchId=192]
+# [Question Link](https://practice.geeksforgeeks.org/problems/third-largest-element/1/?track=amazon-arrays&batchId=192)
 
 # Given an array of distinct elements. Find the third largest element in it. 
 
