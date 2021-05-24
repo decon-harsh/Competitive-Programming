@@ -1,4 +1,4 @@
-# Arrays
+# ARRAYS
 
 ### Prefix/Left Sum Arr
 
@@ -7,6 +7,7 @@ vector<int> lsA(length);
 lsA[0]=A[0];
 for(int k=1;k<A.size();k++)
 {lsA[k]=lsA[k-1]+A[k];}
+
 ```
 ### Suffix/Right Sum Arr 
 
@@ -17,7 +18,29 @@ for(int nk=length-2;nk>=0;nk--)
 {rsA[nk]=rsA[nk+1]+A[nk];}
 ```
 
-# Binary Search
+### Count Less and Equal
+
+```
+pair<int,int> count_less_equal(vector<int>A,int num)
+{
+    int e_count=0;
+    int l_count=0;
+    for(int i=0;i<A.size();i++)
+    {
+        if(A[i]<num)
+        {
+            l_count++;
+        }
+        else if(A[i]==num)
+        {
+            e_count++;
+        }
+    }
+    return make_pair(l_count,e_count);
+}
+```
+
+# BINARY SEARCH
 
 ### Count Ocurrence of B 
 
@@ -40,7 +63,7 @@ int OccurenceCount(const vector<int> &A, int B) {
                 pos--;
             }
             pos=mid+1;
-            while(A[pos]==B && pos<n)
+            while(A[pos]==B && pos < n)
             {
                 res++;
                 pos++;
@@ -51,7 +74,7 @@ int OccurenceCount(const vector<int> &A, int B) {
         {
             end=mid-1;
         }
-        else if(A[mid]<B)
+        else if(A[mid] < B)
         {
             start=mid+1;
         }
@@ -182,3 +205,71 @@ while(low<=high)
     }
 }
 ```
+
+# BIT MANIPULATION
+
+## Reverse a binary number
+
+```
+unsigned int reverse(unsigned int A) {
+    unsigned int num=0; 
+    for(int i=0;i<32;i++)
+    {
+        num=(num<<1)|(A&1);        
+        A=A>>1;
+    }
+    return num;
+}
+```
+
+
+```
+int num_lower_bs(int low,int high,vector<int>A, int num)
+{
+    if(A[low]>=num)   return low+1;
+    else if(A[high]<num)   return high-1;
+    while(low<=high)
+    {
+        int mid = (low+high)/2;
+        if(A[mid]==num) return mid;
+        if(A[mid]>num)
+        {
+            if(A[mid-1]<num)    return mid-1;
+            high = mid-1;
+        }
+        else if(A[mid]<num)
+        {
+            if(A[mid+1]>num)    return mid;
+            low = mid+1;
+        }
+    }
+    return INT_MIN;
+}
+
+int Solution::threeSumClosest(vector<int> &A, int B) {
+    sort(A.begin(),A.end());
+    int n = A.size();
+    int i=0;
+    int k=n-1;
+    long long int max_so_far=INT_MIN;
+    while(k-i>=2)
+    {
+        int search = num_lower_bs(i,k,A, B - (A[i]+A[k]));
+    
+        if(search==i)  search++;
+        else if(search==k)  search--;
+
+        // cout<<A[i]<<" : "<<A[search]<<" : "<<A[k]<<endl;
+        // cout<<"max "<<max_so_far<<endl;
+        
+        // if(A[search]+A[i]+A[k]==B) return B;
+        if(abs(B -(A[search]+A[i]+A[k])) < abs(B - max_so_far))  max_so_far = A[search]+A[i]+A[k];
+        if (max_so_far==B)   return max_so_far;
+
+        if (A[search]+A[i]+A[k]<B)    i++;
+        else if(A[search]+A[i]+A[k]>B)    k--;
+    }
+    // cout<<i<<" : "<<k<<endl;
+    return max_so_far;
+}
+```    
