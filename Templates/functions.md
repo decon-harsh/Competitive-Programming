@@ -9,7 +9,7 @@ for(int k=1;k<A.size();k++)
 {lsA[k]=lsA[k-1]+A[k];}
 ```
 
-### Suffix/Right Sum Arr 
+### Suffix/Right Sum Arr
 
 ```
 vector<int> rsA(length);
@@ -42,7 +42,7 @@ pair<int,int> count_less_equal(vector<int>A,int num)
 
 # BINARY SEARCH
 
-### Count Ocurrence of B 
+### Count Ocurrence of B
 
 ```
 int OccurenceCount(const vector<int> &A, int B) {
@@ -143,11 +143,11 @@ int upper_bs(int low,int high,vector<int>A,int num)
     {
         return -1;
     }
-    
+
     while(low<=high)
     {
         int mid = (low+high)/2;
-        
+
         if(A[mid]<=num)
         {
             low=mid+1;
@@ -169,11 +169,11 @@ int num_upper_bs(int low,int high,vector<int>A,int num)
     {
         return INT_MAX;
     }
-    
+
     while(low<=high)
     {
         int mid = (low+high)/2;
-        
+
         if(A[mid]<=num)
         {
             low=mid+1;
@@ -212,7 +212,7 @@ while(low<=high)
 
 ```
 unsigned int reverse(unsigned int A) {
-    unsigned int num=0; 
+    unsigned int num=0;
     for(int i=0;i<32;i++)
     {
         num=(num<<1)|(A&1);        
@@ -238,19 +238,19 @@ int findLength(ListNode *temp){
 ```
 
 
-### Merge two sorted linked list 
+### Merge two sorted linked list
 
 ```
 ListNode* merge_ll(ListNode *A,ListNode* B)
 {
-    
+
     ListNode *trav1=A,*trav2=B;
     ListNode dummy(-1);
     ListNode *temp=&dummy;
-    
+
     while(trav1 && trav2)
     {
-        
+
         if(trav1->val<trav2->val)
         {
             temp->next=trav1;
@@ -261,7 +261,7 @@ ListNode* merge_ll(ListNode *A,ListNode* B)
             temp->next=trav2;
             trav2=trav2->next;
         }
-        
+
         temp=temp->next;
     }
     while(trav1)
@@ -270,7 +270,7 @@ ListNode* merge_ll(ListNode *A,ListNode* B)
         trav1=trav1->next;
         temp=temp->next;
     }
-    
+
     while(trav2)
     {
         temp->next=trav2;
@@ -288,7 +288,7 @@ ListNode* merge_ll(ListNode *A,ListNode* B)
 void mergesort(ListNode*& A)
 {
     if(A==NULL || A->next==NULL)    return;
-    
+
     ListNode *prev=NULL,*mid=A,*fast=mid;
     while(fast&&fast->next)
     {
@@ -312,7 +312,7 @@ void mergesort(ListNode*& A)
     vector<int> preorderTraversal(TreeNode* root) {
         if(!root)   return{};
         ans.push_back(root->val);
-        
+
         preorderTraversal(root->left);
         preorderTraversal(root->right);
         return ans;
@@ -353,7 +353,7 @@ vector<vector<int>> levelOrder(TreeNode* root)
         vector<vector<int>> v;
         queue<TreeNode*> q;
         q.push(root);
-        
+
         TreeNode *tempNode=root;
         while(!q.empty())
         {
@@ -455,6 +455,7 @@ Or, you can think of the problem in this way: for a node in a tree, if you know 
   }
 ```
 
+
 # Heapify (Iterative)
 ```
   void minHeapify(int i)
@@ -468,6 +469,7 @@ Or, you can think of the problem in this way: for a node in a tree, if you know 
       smallest=lt;
       if(rt<size && arr[rt]<arr[smallest])
       smallest=rt;
+
       if(smallest==i)
       break;
       else
@@ -484,12 +486,15 @@ Or, you can think of the problem in this way: for a node in a tree, if you know 
 void heapify(int arr[], int n, int i)
 {
     int smallest = i;  
-    int l = 2*i + 1; 
+    int l = 2*i + 1;
     int r = 2*i + 2;  
+
     if (l < n && arr[l] < arr[smallest])
         smallest = l;
+
     if (r < n && arr[r] < arr[smallest])
         smallest = r;
+
     if (smallest != i)
     {
         swap(arr[i], arr[smallest]);
