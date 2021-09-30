@@ -455,54 +455,65 @@ Or, you can think of the problem in this way: for a node in a tree, if you know 
   }
 ```
 
-# Dijikstra Algorithm
+# Bellman ford Algorithm
 ```
 #include<bits/stdc++.h>
 using namespace std;
+struct node {
+    int u;
+    int v;
+    int wt;
+    node(int first, int second, int weight) {
+        u = first;
+        v = second;
+        wt = weight;
+    }
+};
 
 int main(){
-	int n,m,source;
-	cin >> n >> m;
-	vector<pair<int,int> > g[n+1]; 	// 1-indexed adjacency list for of graph
+    int N,m;
+    cin >> N >> m;
+    vector<node> edges;
+    for(int i = 0;i<m;i++) {
+        int u, v, wt;
+        cin >> u >> v >> wt;
+        edges.push_back(node(u, v, wt));
+    }
 
-	int a,b,wt;
-	for(int i = 0; i<m ; i++){
-		cin >> a >> b >> wt;
-		g[a].push_back(make_pair(b,wt));
-		g[b].push_back(make_pair(a,wt));
-	}
+    int src;
+    cin >> src;
 
-	cin >> source;
 
-	// Dijkstra's algorithm begins from here
-	priority_queue<pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > > pq;// min-heap ; In pair => (dist,from)
-	vector<int> distTo(n+1,INT_MAX); 	// 1-indexed array for calculating shortest paths;
+    int inf = 10000000;
+    vector<int> dist(N, inf);
 
-	distTo[source] = 0;
-	pq.push(make_pair(0,source));	// (dist,from)
+    dist[src] = 0;
 
-	while( !pq.empty() ){
-		int dist = pq.top().first;
-		int prev = pq.top().second;
-		pq.pop();
+    for(int i = 1;i<=N-1;i++) {
+        for(auto it: edges) {
+            if(dist[it.u] + it.wt < dist[it.v]) {
+                dist[it.v] = dist[it.u] + it.wt;
+            }
+        }
+    }
 
-		vector<pair<int,int> >::iterator it;
-		for( it = g[prev].begin() ; it != g[prev].end() ; it++){
-			int next = it->first;
-			int nextDist = it->second;
-			if( distTo[next] > distTo[prev] + nextDist){
-				distTo[next] = distTo[prev] + nextDist;
-				pq.push(make_pair(distTo[next], next));
-			}
-		}
+    int fl = 0;
+    for(auto it: edges) {
+        if(dist[it.u] + it.wt < dist[it.v]) {
+            cout << "Negative Cycle";
+            fl = 1;
+            break;
+        }
+    }
 
-	}
+    if(!fl) {
+        for(int i = 0;i<N;i++) {
+            cout << i << " " << dist[i] << endl;
+        }
+    }
 
-	cout << "The distances from source, " << source << ", are : \n";
-	for(int i = 1 ; i<=n ; i++)	cout << distTo[i] << " ";
-	cout << "\n";
 
-	return 0;
+    return 0;
 }
 
 ```
