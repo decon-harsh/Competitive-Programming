@@ -500,7 +500,7 @@ void heapify(int arr[], int n, int i)
 
 # Sieve of Eratosthenes With Linear Time Complexity
 const long long MAX_SIZE = 1000001;
-vector<long long >isprime(MAX_SIZE , true);
+vector<long long  >isprime(MAX_SIZE , true);
 vector<long long >prime;
 vector<long long >SPF(MAX_SIZE);
 void seive(int N)
