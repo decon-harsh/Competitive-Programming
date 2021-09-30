@@ -497,3 +497,81 @@ void heapify(int arr[], int n, int i)
     }
 }
 ```
+# Quick Sort 
+```
+int partition(int arr[], int l, int h) {
+    
+  int p = arr[h];
+  
+  // pointer for greater element
+  int x = (l - 1);
+
+  for (int i = l; i < h; i++) {
+    if (arr[i] <= p) {
+
+      x++;
+      
+      swap(arr[x], arr[j]);
+    }
+  }
+  
+  swap(arr[x + 1], arr[h]);
+
+  return (x + 1);
+}
+
+void quickSort(int arr[], int l, int h) {
+  if (l < h) {
+      
+    int pi = partition(arr, l, h);
+
+    //  left of pivot
+    quickSort(arr, l, pi - 1);
+
+    //  right of pivot
+    quickSort(arr, pi + 1, h);
+  }
+}
+```
+# 3 Way Quick Sort 
+```
+
+void 3waypartition(int arr[], int l, int h, int& i, int& j){
+    
+    if (h - l <= 1) {
+        if (arr[h] < arr[l])
+            swap(arr[h], arr[l]);
+        i = l;
+        j = h;
+        return;
+    }
+ 
+    int mid = l;
+    int pivot = arr[h];
+    while (mid <= h) {
+       
+        if (arr[mid] == pivot)
+            mid++;
+        else if (arr[mid] < pivot)
+            swap(arr[l++], arr[mid++]);
+        else if (arr[mid] > pivot)
+            swap(arr[mid], arr[h--]);
+    }
+
+    i = l - 1;
+    j = mid; 
+}
+
+void 3wayquicksort(int arr[], int l, int h){
+    if (l >= h) 
+        return;
+ 
+    int i, j;
+    3waypartition(arr, l, h, i, j);
+ 
+    //  left of pivot
+         3wayquicksort(arr, l, i);
+    //  right of pivot
+         3wayquicksort(arr, j, h);
+}
+ 
