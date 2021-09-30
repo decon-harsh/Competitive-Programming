@@ -574,4 +574,33 @@ void 3wayquicksort(int arr[], int l, int h){
     //  right of pivot
          3wayquicksort(arr, j, h);
 }
+```
+# Sieve of Eratosthenes in O(n)
+
+vector<long long >isprime(1000001 , true);
+vector<long long >prime;
+vector<long long >SPF(1000001);
+void seive(int n)
+{
+    isprime[0] = isprime[1] = false ;
+
+    for (long long int i=2; i<n ; i++)
+    {
+
+        if (isprime[i]==1){
+
+            prime.push_back(i);
+            SPF[i] = i;
+        }
+
+     for (long long int j=0;  j < (int)prime.size() &&  i*prime[j] < n && prime[j] <= SPF[i] ;j++) {
+
+            isprime[i*prime[j]]=false;
+            SPF[i*prime[j]] = prime[j] ;
+        }
+    }
+}
+
+```
+
  
