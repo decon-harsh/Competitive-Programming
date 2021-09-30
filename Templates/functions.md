@@ -548,7 +548,7 @@ void printSolution(int dist[])
 }
  
 
-void dijkstra(int graph[V][V], int src)
+void Dijkstra(int graph[V][V], int src)
 {
     int dist[V]; 
 
