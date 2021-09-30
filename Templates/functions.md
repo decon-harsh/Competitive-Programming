@@ -455,43 +455,54 @@ Or, you can think of the problem in this way: for a node in a tree, if you know 
   }
 ```
 
-# Quick Sort
+# Dijikstra Algorithm
 ```
-int partition (int arr[], int low, int high)
-{
-    int pivot = arr[high]; // pivot
-    int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
+#include<bits/stdc++.h>
+using namespace std;
 
-    for (int j = low; j <= high - 1; j++)
-    {
-        // If current element is smaller than the pivot
-        if (arr[j] < pivot)
-        {
-            i++; // increment index of smaller element
-            swap(&arr[i], &arr[j]);
-        }
-    }
-    swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
+int main(){
+	int n,m,source;
+	cin >> n >> m;
+	vector<pair<int,int> > g[n+1]; 	// 1-indexed adjacency list for of graph
+
+	int a,b,wt;
+	for(int i = 0; i<m ; i++){
+		cin >> a >> b >> wt;
+		g[a].push_back(make_pair(b,wt));
+		g[b].push_back(make_pair(a,wt));
+	}
+
+	cin >> source;
+
+	// Dijkstra's algorithm begins from here
+	priority_queue<pair<int,int>,vector<pair<int,int> >,greater<pair<int,int> > > pq;// min-heap ; In pair => (dist,from)
+	vector<int> distTo(n+1,INT_MAX); 	// 1-indexed array for calculating shortest paths;
+
+	distTo[source] = 0;
+	pq.push(make_pair(0,source));	// (dist,from)
+
+	while( !pq.empty() ){
+		int dist = pq.top().first;
+		int prev = pq.top().second;
+		pq.pop();
+
+		vector<pair<int,int> >::iterator it;
+		for( it = g[prev].begin() ; it != g[prev].end() ; it++){
+			int next = it->first;
+			int nextDist = it->second;
+			if( distTo[next] > distTo[prev] + nextDist){
+				distTo[next] = distTo[prev] + nextDist;
+				pq.push(make_pair(distTo[next], next));
+			}
+		}
+
+	}
+
+	cout << "The distances from source, " << source << ", are : \n";
+	for(int i = 1 ; i<=n ; i++)	cout << distTo[i] << " ";
+	cout << "\n";
+
+	return 0;
 }
-
-/* The main function that implements QuickSort
-arr[] --> Array to be sorted,
-low --> Starting index,
-high --> Ending index */
-void quickSort(int arr[], int low, int high)
-{
-    if (low < high)
-    {
-        /* pi is partitioning index, arr[p] is now
-        at right place */
-        int pi = partition(arr, low, high);
-
-        // Separately sort elements before
-        // partition and after partition
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
-} 
 
 ```
