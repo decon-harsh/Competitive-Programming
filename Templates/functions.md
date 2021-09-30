@@ -499,11 +499,13 @@ void heapify(int arr[], int n, int i)
 ```
 
 # Sieve of Eratosthenes With Linear Time Complexity
-void seive(int N)
-{  long long MAX_SIZE = 1000001;
+```
+long long MAX_SIZE = 1000001;
 vector<long long  >isprime(MAX_SIZE , true);
 vector<long long >prime;
 vector<long long >SPF(MAX_SIZE);
+void seive(int N)
+{  
     isprime[0] = isprime[1] = false ;
  
     for (long long int i=2; i<N ; i++)
@@ -523,4 +525,4 @@ vector<long long >SPF(MAX_SIZE);
         }
     }
 }
- 
+ ```
