@@ -497,3 +497,219 @@ void heapify(int arr[], int n, int i)
     }
 }
 ```
+
+# Sieve of Eratosthenes With Linear Time Complexity
+```
+long long MAX_SIZE = 1000001;
+vector<long long  >isprime(MAX_SIZE , true);
+vector<long long >prime;
+vector<long long >SPF(MAX_SIZE);
+void seive(int N)
+{  
+    isprime[0] = isprime[1] = false ;
+ 
+    for (long long int i=2; i<N ; i++)
+    {
+       
+        if (isprime[i])
+        {
+                        prime.push_back(i);
+ 
+                       SPF[i] = i;
+        }
+ 
+     for (long long int j=0;  j < (int)prime.size() &&  i*prime[j] < N && prime[j] <= SPF[i] ;j++)
+        {
+            isprime[i*prime[j]]=false;
+            SPF[i*prime[j]] = prime[j] ;
+        }
+    }
+}
+ ```
+# Dijkstra Algorithm
+```
+int minDistance(int dist[], bool sptSet[])
+{
+   
+    int min = INT_MAX, min_index;
+ 
+    for (int v = 0; v < V; v++)
+        if (sptSet[v] == false && dist[v] <= min)
+            min = dist[v], min_index = v;
+ 
+    return min_index;
+}
+ 
+void printSolution(int dist[])
+{
+    cout <<"Vertex \t Distance from Source" << endl;
+    for (int i = 0; i < V; i++)
+        cout  << i << " \t\t"<<dist[i]<< endl;
+}
+ 
+
+void Dijkstra(int graph[V][V], int src)
+{
+    int dist[V]; 
+
+ 
+    bool sptSet[V]; 
+    for (int i = 0; i < V; i++)
+        dist[i] = INT_MAX, sptSet[i] = false;
+ 
+  
+    dist[src] = 0;
+ 
+ 
+    for (int count = 0; count < V - 1; count++) {
+    
+        int u = minDistance(dist, sptSet);
+ 
+    
+        sptSet[u] = true;
+ 
+        
+        for (int v = 0; v < V; v++)
+            if (!sptSet[v] && graph[u][v] && dist[u] != INT_MAX
+                && dist[u] + graph[u][v] < dist[v])
+                dist[v] = dist[u] + graph[u][v];
+    }
+ 
+    printSolution(dist);
+}
+
+
+
+
+```
+# Belman Ford Algo
+```
+struct Edge {
+    int src, dest, weight;
+};
+ 
+// a structure to represent a connected, directed and
+// weighted graph
+struct Graph {
+    // V-> Number of vertices, E-> Number of edges
+    int V, E;
+ 
+    // graph is represented as an array of edges.
+    struct Edge* edge;
+};
+ 
+// Creates a graph with V vertices and E edges
+struct Graph* createGraph(int V, int E)
+{
+    struct Graph* graph = new Graph;
+    graph->V = V;
+    graph->E = E;
+    graph->edge = new Edge[E];
+    return graph;
+}
+ 
+// A utility function used to print the solution
+void printArr(int dist[], int n)
+{
+    printf("Vertex   Distance from Source\n");
+    for (int i = 0; i < n; ++i)
+        printf("%d \t\t %d\n", i, dist[i]);
+}
+ 
+// The main function that finds shortest distances from src to
+// all other vertices using Bellman-Ford algorithm.  The function
+// also detects negative weight cycle
+void BellmanFord(struct Graph* graph, int src)
+{
+    int V = graph->V;
+    int E = graph->E;
+    int dist[V];
+ 
+    // Step 1: Initialize distances from src to all other vertices
+    // as INFINITE
+    for (int i = 0; i < V; i++)
+        dist[i] = INT_MAX;
+    dist[src] = 0;
+ 
+    // Step 2: Relax all edges |V| - 1 times. A simple shortest
+    // path from src to any other vertex can have at-most |V| - 1
+    // edges
+    for (int i = 1; i <= V - 1; i++) {
+        for (int j = 0; j < E; j++) {
+            int u = graph->edge[j].src;
+            int v = graph->edge[j].dest;
+            int weight = graph->edge[j].weight;
+            if (dist[u] != INT_MAX && dist[u] + weight < dist[v])
+                dist[v] = dist[u] + weight;
+        }
+    }
+ 
+    // Step 3: check for negative-weight cycles.  The above step
+    // guarantees shortest distances if graph doesn't contain
+    // negative weight cycle.  If we get a shorter path, then there
+    // is a cycle.
+    for (int i = 0; i < E; i++) {
+        int u = graph->edge[i].src;
+        int v = graph->edge[i].dest;
+        int weight = graph->edge[i].weight;
+        if (dist[u] != INT_MAX && dist[u] + weight < dist[v]) {
+            printf("Graph contains negative weight cycle");
+            return; // If negative cycle is detected, simply return
+        }
+    }
+ 
+    printArr(dist, V);
+ 
+    return;
+}
+ 
+```
+# National Dutch Flag Algo
+```
+
+// Function to sort the input array, 
+// the array is assumed  
+// to have values in {0, 1, 2}  
+void DNFS(int arr[], int arr_size)  
+{  
+    int low = 0;  
+    int high = arr_size - 1;  
+    int mid = 0;  
+      
+    // Iterate till all the elements 
+    // are sorted  
+    while (mid <= high)  
+    {  
+        switch (arr[mid])  
+        {  
+              
+            // mid is 0  
+        case 0:  
+            swap(arr[low++], arr[mid++]);  
+            break;  
+              
+            // mid is 1 .  
+        case 1:  
+            mid++;  
+            break;  
+              
+            // mid is 2  
+        case 2:  
+            swap(arr[mid], arr[high--]);  
+            break;  
+        }  
+    }  
+}  
+  
+  
+  
+// Function to print array arr[]  
+void printArray(int arr[], int arr_size)  
+{  
+    // Iterate and print every element  
+    for (int i = 0; i < arr_size; i++)  
+        cout << arr[i] << " ";  
+  
+}  
+  
+```
