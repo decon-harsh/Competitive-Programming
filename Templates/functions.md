@@ -567,7 +567,7 @@ void 3wayquicksort(int arr[], int l, int h){
         return;
  
     int i, j;
-    partition(arr, l, h, i, j);
+    3waypartition(arr, l, h, i, j);
  
     //  left of pivot
          3wayquicksort(arr, l, i);
