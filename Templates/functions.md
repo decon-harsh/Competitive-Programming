@@ -582,7 +582,7 @@ void Dijkstra(int graph[V][V], int src)
 
 
 ```
-# 
+# Belman Ford Algo
 ```
 struct Edge {
     int src, dest, weight;
