@@ -583,7 +583,7 @@ vector<long long >SPF(1000001);
 void seive(int n)
 {
     isprime[0] = isprime[1] = false ;
-    
+
     for (long long int i=2; i<n ; i++){
 
         if (isprime[i]==1){
@@ -600,6 +600,4 @@ void seive(int n)
     }
 }
 ```
-
-5
  
