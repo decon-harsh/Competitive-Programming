@@ -545,5 +545,38 @@ int lcs(int x, int y, string s1, string s2)
        }
        return t[n][W];
     }
-    ```
-    
+```
+# 0-1 Knapsack (Dynamic programming)
+```
+    int t[101][101];
+    Solution(){
+        memset(t , -1 , sizeof t);
+    }
+
+    int solve(int arr[] , int i , int j){
+        
+        if(i>=j)
+         return 0;
+         
+         int k;
+         int mn = INT_MAX;
+         int count =0;
+         
+         if(t[i][j]!=-1){
+             return t[i][j];
+         }
+         
+         for(k=i; k<j; k++){
+             count = solve(arr , i , k) + solve(arr , k+1 , j) + arr[i-1]*arr[k]*arr[j];
+             
+             mn = min(mn , count);
+             t[i][j] = mn;
+         }
+         return t[i][j];
+    }
+    int matrixMultiplication(int N, int arr[])
+    {
+       return solve (arr , 1 , N-1);
+       
+    }
+```
