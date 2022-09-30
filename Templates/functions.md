@@ -497,3 +497,86 @@ void heapify(int arr[], int n, int i)
     }
 }
 ```
+
+# Longest common subsequence (Dynamic programming)
+```
+int lcs(int x, int y, string s1, string s2)
+    {
+        int t[x+1][y+1];
+        for(int i=0; i<x+1; i++)
+        {
+          for(int j=0; j<y+1; j++)
+          {
+              if(i==0 || j==0)
+                t[i][j]=0;
+          
+                else if(s1[i-1] == s2[j-1])
+                t[i][j] = 1 + t[i-1][j-1];
+                
+                else 
+                t[i][j] = max(t[i-1][j] , t[i][j-1]);
+            }
+        }
+        return t[x][y];
+    }
+ ```
+# 0-1 Knapsack (Dynamic programming)
+```
+ int knapSack(int W, int wt[], int val[], int n) 
+    { 
+       // Your code here
+       int t[n+1][W+1];
+       for(int i=0; i<(n+1); i++){
+           for(int j=0; j<(W+1); j++){
+               if(i==0 || j==0){
+                   t[i][j]=0;
+               }
+           }
+       }
+       for(int i =1; i<(n+1); i++){
+           for(int j=1; j<(W+1); j++){
+               if(wt[i-1] <=j){
+                   t[i][j]= max(val[i-1]+t[i-1][j-wt[i-1]] , t[i-1][j]);
+               }
+               else{
+                   t[i][j] = t[i-1][j];
+               }
+           }
+       }
+       return t[n][W];
+    }
+```
+# 0-1 Knapsack (Dynamic programming)
+```
+    int t[101][101];
+    Solution(){
+        memset(t , -1 , sizeof t);
+    }
+
+    int solve(int arr[] , int i , int j){
+        
+        if(i>=j)
+         return 0;
+         
+         int k;
+         int mn = INT_MAX;
+         int count =0;
+         
+         if(t[i][j]!=-1){
+             return t[i][j];
+         }
+         
+         for(k=i; k<j; k++){
+             count = solve(arr , i , k) + solve(arr , k+1 , j) + arr[i-1]*arr[k]*arr[j];
+             
+             mn = min(mn , count);
+             t[i][j] = mn;
+         }
+         return t[i][j];
+    }
+    int matrixMultiplication(int N, int arr[])
+    {
+       return solve (arr , 1 , N-1);
+       
+    }
+```
