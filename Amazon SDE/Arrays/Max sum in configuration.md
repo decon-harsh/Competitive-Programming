@@ -25,6 +25,8 @@
 # 1<=N<=104
 # 1<=A[]<1000
 
+# expected code 
+
 ```
 // { Driver Code Starts
 #include<bits/stdc++.h>
