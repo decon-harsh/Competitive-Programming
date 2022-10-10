@@ -4,8 +4,9 @@
 
 # Example 1:
 
+
 # Input:
-# N = 4
+# N = 4 (total number)
 # A[] = {8,3,1,2}
 # Output: 29
 # Explanation: Above the configuration
@@ -25,8 +26,10 @@
 # 1<=N<=104
 # 1<=A[]<1000
 
-```
-// { Driver Code Starts
+# expected code 
+
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -51,10 +54,7 @@ int main()
 
     }
 }
-// } Driver Code Ends
 
-
-/*You are required to complete this method*/
 
 int max_sum(int A[],int N)
 {
@@ -74,4 +74,3 @@ int max_sum(int A[],int N)
     }
     return res;
 }
-```
