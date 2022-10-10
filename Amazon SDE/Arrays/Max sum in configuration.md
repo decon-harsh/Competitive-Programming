@@ -4,8 +4,9 @@
 
 # Example 1:
 
+
 # Input:
-# N = 4
+# N = 4 (total number)
 # A[] = {8,3,1,2}
 # Output: 29
 # Explanation: Above the configuration
