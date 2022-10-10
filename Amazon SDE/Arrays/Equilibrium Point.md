@@ -21,8 +21,8 @@
 # Output: 3
 # Explanation: For second test case 
 # equilibrium point is at position 3 
-# as elements before it (1+3) = 
-# elements after it (2+2).
+# as elements before it (1+3) = elements after it (2+2).
+
  
 
 # Your Task:

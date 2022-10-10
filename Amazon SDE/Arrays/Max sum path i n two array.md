@@ -23,6 +23,9 @@
 # Output: 15
 # Explanation: The path will be 1+2+3+4+5=15.
 
+# example 3: 
+
+
 # Your Task:
 # You don't need to read input or print anything. Complete the function max_path_sum() which takes the two arrays A and B along with their sizes M and N as input parameters. It returns the maximum path sum.
 
