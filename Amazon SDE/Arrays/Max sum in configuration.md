@@ -28,8 +28,8 @@
 
 # expected code 
 
-```
-// { Driver Code Starts
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -54,10 +54,7 @@ int main()
 
     }
 }
-// } Driver Code Ends
 
-
-/*You are required to complete this method*/
 
 int max_sum(int A[],int N)
 {
@@ -77,4 +74,3 @@ int max_sum(int A[],int N)
     }
     return res;
 }
-```
