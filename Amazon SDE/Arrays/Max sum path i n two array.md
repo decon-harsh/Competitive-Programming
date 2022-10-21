@@ -1,5 +1,5 @@
 # [Question Link](https://practice.geeksforgeeks.org/problems/max-sum-path-in-two-arrays/1/?track=amazon-arrays&batchId=192)
-
+# another commit
 # Given two sorted arrays A and B of size M and N respectively. Each array contains only distinct elements but may have some elements in common with the other array. Find the maximum sum of a path from the beginning of any array to the end of any of the two arrays. We can switch from one array to another array only at the common elements.
 # Note: Only one repeated value is considered in the valid path sum.
 
