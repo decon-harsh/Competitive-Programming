@@ -3,7 +3,7 @@
 # You are given an array A, of N elements. Find minimum index based distance between two elements of the array, x and y.
 
 # Example 1:
-
+# min distance between two numbers
 # Input:
 # N = 4
 # A[] = {1,2,3,2}
