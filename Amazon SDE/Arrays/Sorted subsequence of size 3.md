@@ -3,7 +3,7 @@
 # Given an array A of N integers, find any 3 elements in it such that A[i] < A[j] < A[k] and i < j < k.
 
 # Example 1:
-
+# sorted subsequence of size 3
 # Input:
 # N = 5
 # A[] = {1,2,1,1,3}
