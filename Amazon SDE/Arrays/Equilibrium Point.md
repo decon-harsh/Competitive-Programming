@@ -5,7 +5,7 @@
 # Equilibrium Point in an array is a position such that the sum of elements before it is equal to the sum of elements after it.
 
 # Example 1:
-
+# first commit
 # Input:
 # n = 1
 # A[] = {1}
